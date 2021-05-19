@@ -15,6 +15,7 @@
     "assert": "^2.0.0",
     "axios": "^0.21.1",
     "mocha": "^8.4.0",
+    "mocha-allure-reporter": "^1.4.0",
     "webdriverio": "^4.9.11"
   }
 }

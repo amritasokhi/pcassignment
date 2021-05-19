@@ -10,9 +10,9 @@ const myAppsTab = '//a[@title="My Apps"]'
 /**
  * Click the My Apps tab
  */
-const navigateToMyApps = () => {
+const navigateToMyApps = allure.createStep('Navigate to My Apps', () => {
   return driver.waitForVisible(myAppsTab, waitTime).click(myAppsTab)
-}
+})
 
 module.exports = {
   navigateToMyApps,

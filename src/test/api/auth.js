@@ -12,33 +12,35 @@ const CONSUMER_CREDENTIALS = {
  * @param {object} consumer credentials for authentication, default: CONSUMER_CREDENTIALS
  * @returns Promise
  */
-const authenticate = ({
-  consumerKey,
-  consumerSecret,
-} = CONSUMER_CREDENTIALS) => {
-  const params = new URLSearchParams()
-  params.append('grant_type', 'client_credentials')
+const authenticate = allure.createStep(
+  'Autheticate using client credentials',
+  ({ consumerKey, consumerSecret } = CONSUMER_CREDENTIALS) => {
+    const params = new URLSearchParams()
+    params.append('grant_type', 'client_credentials')
 
-  return request
-    .post('/accesstoken', params, {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      auth: {
-        username: consumerKey,
-        password: consumerSecret,
-      },
-    })
-    .then((response) => {
-      assert.strictEqual(
-        response.status,
-        200,
-        `Unexpected response status: ${response.status}`
-      )
-      // Set auth token to be shared/used
-      AUTH_TOKEN = response.data['access_token']
-      // add authorization header to request instance globally
-      request.defaults.headers.common['Authorization'] = `Bearer ${AUTH_TOKEN}`
-    })
-}
+    return request
+      .post('/accesstoken', params, {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        auth: {
+          username: consumerKey,
+          password: consumerSecret,
+        },
+      })
+      .then((response) => {
+        assert.strictEqual(
+          response.status,
+          200,
+          `Unexpected response status: ${response.status}`
+        )
+        // Set auth token to be shared/used
+        AUTH_TOKEN = response.data['access_token']
+        // add authorization header to request instance globally
+        request.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${AUTH_TOKEN}`
+      })
+  }
+)
 
 const getToken = () => AUTH_TOKEN
 

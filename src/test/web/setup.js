@@ -1,3 +1,4 @@
+require('mocha-allure-reporter')
 const webdriverio = require('webdriverio')
 
 // Webdriverio options for standalone selenium server
