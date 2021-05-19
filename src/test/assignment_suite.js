@@ -1,4 +1,3 @@
-const driver = require('./web/setup')
 const assert = require('assert')
 
 // Pages / modules

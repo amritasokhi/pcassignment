@@ -17,20 +17,23 @@ const launchApp = (basePath = '/') => {
 }
 
 // Click on login and open the modal
-const openLoginModal = () => {
+const openLoginModal = allure.createStep('Open the login modal', () => {
   return driver.waitForVisible(loginButton, waitTime).click(loginButton)
-}
+})
 
 // Enter credentials in the login modal
-const enterCredentials = (username, password) => {
-  return driver
-    .waitForVisible(modalUsername, waitTime)
-    .setValue(modalUsername, username)
-    .setValue(modalPassword, password)
-}
+const enterCredentials = allure.createStep(
+  'Enter the credentials',
+  (username, password) => {
+    return driver
+      .waitForVisible(modalUsername, waitTime)
+      .setValue(modalUsername, username)
+      .setValue(modalPassword, password)
+  }
+)
 
 // Open the modal, enter credentials and click Login
-const login = (username, password) => {
+const login = allure.createStep('LogIn to app', (username, password) => {
   return openLoginModal()
     .then(() => {
       return enterCredentials(username, password)
@@ -38,7 +41,7 @@ const login = (username, password) => {
     .then(() => {
       return driver.click(modalLogin)
     })
-}
+})
 
 module.exports = {
   launchApp,

@@ -24,17 +24,20 @@ const appLabelXpathMap = {
  * @param {string} appType The app type, one of the keys in appLabelXpathMap, default: ccin-extracts
  * @returns
  */
-const createAnApp = (appName, appType = 'ccin-extracts') => {
-  const appLabelXpath = appLabelXpathMap[appType]
-  return driver
-    .waitForVisible(appNameField, waitTime)
-    .setValue(appNameField, appName)
-    .scroll(appLabelXpath) // bring to view
-    .waitForVisible(appLabelXpath, waitTime)
-    .click(appLabelXpath)
-    .scroll(createAppButton)
-    .click(createAppButton)
-}
+const createAnApp = allure.createStep(
+  'Create an app by adding name, selecting type and submit',
+  (appName, appType = 'ccin-extracts') => {
+    const appLabelXpath = appLabelXpathMap[appType]
+    return driver
+      .waitForVisible(appNameField, waitTime)
+      .setValue(appNameField, appName)
+      .scroll(appLabelXpath) // bring to view
+      .waitForVisible(appLabelXpath, waitTime)
+      .click(appLabelXpath)
+      .scroll(createAppButton)
+      .click(createAppButton)
+  }
+)
 
 module.exports = {
   createAnApp,
