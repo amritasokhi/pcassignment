@@ -9,7 +9,7 @@ const CONSUMER_CREDENTIALS = {
 
 /**
  * Get Authentication token and update request object with the token
- * @param {*} consumer credentials for authentication, default: CONSUMER_CREDENTIALS
+ * @param {object} consumer credentials for authentication, default: CONSUMER_CREDENTIALS
  * @returns Promise
  */
 const authenticate = ({
@@ -35,7 +35,7 @@ const authenticate = ({
       )
       // Set auth token to be shared/used
       AUTH_TOKEN = response.data['access_token']
-      // add authorization header to request globally
+      // add authorization header to request instance globally
       request.defaults.headers.common['Authorization'] = `Bearer ${AUTH_TOKEN}`
     })
 }
