@@ -3,7 +3,7 @@ const assert = require('assert')
 
 /**
  * Get branch details by DPRN
- * @param string dprn Direct Payment Routing Number
+ * @param string Direct Payment Routing Number
  * @returns Promise<response>
  */
 const getBranchDataByDPRN = (dprn) => {
