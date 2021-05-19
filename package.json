@@ -4,6 +4,7 @@
   "description": "Sr API and QA Engineer Technical Assessment Test",
   "main": "index.js",
   "scripts": {
+    "test": "mocha ./src/test/assignment_suite.js",
     "testapi": "mocha ./src/test/api/api_test_suite.js",
     "testweb": "mocha ./src/test/web/web_test_suite.js"
   },

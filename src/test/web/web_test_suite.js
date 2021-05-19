@@ -14,7 +14,7 @@ const { username, password } = users['testUser1']
 const appName = 'Asokhi Test App'
 const appType = 'fif-branch'
 
-describe('Web', function () {
+describe('Web Test Suite', function () {
   this.timeout(10000)
 
   it('Launch App', () => {

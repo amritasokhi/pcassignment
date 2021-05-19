@@ -2,6 +2,7 @@ const webdriverio = require('webdriverio')
 
 // Webdriverio options for standalone selenium server
 const webdriverOptions = {
+  host: process.env.selenium || 'localhost',
   desiredCapabilities: {
     browserName: 'chrome',
   },
