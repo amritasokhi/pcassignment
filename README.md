@@ -2,7 +2,7 @@
 # Sr API and QA Engineer Technical Assessment Test
 
 ## Installation steps
-1. Clone the repo https://github.com/amritasokhi/pcassignment.git
+1. Clone the repo `git clone https://github.com/amritasokhi/pcassignment.git`
 2. `cd pcassignment/`
 3. Execute `npm install`
 4. Execute `npm run seleniumstart` for starting up the selenium standalone server
