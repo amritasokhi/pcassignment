@@ -55,4 +55,15 @@ describe('Web Test Suite', function () {
   it('Delete the expanded app', () => {
     return myApps.deleteExpandedApp()
   })
+
+  // Add a fail safe to delete the app if the suite flow does not end up deleting the app
+  // wanted to use after hook here, but allure does not recognsize mocha hooks as test
+  it('Delete App if not already deleted', () => {
+    return myApps
+      .deleteAppByAppNameE2E(appName, username, password)
+      .catch((err) => {
+        // In the after hook this test should not produce failure,
+        // as it is bound to fail if app gets deleted successfully
+      })
+  })
 })

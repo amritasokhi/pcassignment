@@ -73,8 +73,11 @@ describe('Assignment Test Suite', function () {
     })
   })
 
-  // Delete the app from GUI
-  it('Delete the expanded app', () => {
-    return myApps.deleteExpandedApp()
+  // Wanted to add this to after hook as framework fail safe
+  // after('Cleanup', () => {})
+  // but allure does not report mocha hooks as tests, but as steps
+  // So adding it as a test instead
+  it('Delete the App', () => {
+    return myApps.deleteAppByAppNameE2E(appName, username, password)
   })
 })
