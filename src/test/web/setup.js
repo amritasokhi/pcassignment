@@ -1,13 +1,12 @@
 require('mocha-allure-reporter')
 const webdriverio = require('webdriverio')
 
-// Webdriverio options for standalone selenium server
+// Webdriverio options for selenium-standalone server
 const webdriverOptions = {
   host: process.env.selenium || 'localhost',
   desiredCapabilities: {
     browserName: 'chrome',
   },
-  port: 5555, // selenium server running on this port
   baseUrl: 'https://developer.payments.ca',
 }
 
