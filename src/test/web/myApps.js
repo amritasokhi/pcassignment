@@ -3,6 +3,7 @@
  */
 const assert = require('assert')
 const driver = require('./setup')
+const common = require('./common')
 
 const waitTime = 2000
 
@@ -92,10 +93,31 @@ const deleteExpandedApp = allure.createStep('Delete the app', () => {
   return startDeleteApp().then(() => modalDelete())
 })
 
+// Open MyApps directly through the url
+const openMyApps = allure.createStep(
+  'Open My Apps by url',
+  (username, password) => {
+    return common.launchApp('/user/me/apps').then(() => {
+      return common.loginIfNotLoggedIn(username, password)
+    })
+  }
+)
+
+// Delete the app end to end by app name
+const deleteAppByAppNameE2E = allure.createStep(
+  'Delete the app end-to-end by app name',
+  (appName, username, password) => {
+    return openMyApps(username, password)
+      .then(() => toggleAppDetails(appName))
+      .then(() => deleteExpandedApp())
+  }
+)
+
 module.exports = {
   startAddApp,
   validateAppCreatedMessage,
   toggleAppDetails,
   extractConsumerInfo,
   deleteExpandedApp,
+  deleteAppByAppNameE2E,
 }
